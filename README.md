@@ -1,6 +1,6 @@
 # xpense
 
-A new Flutter project.
+Currently developing a budgeting app using flutter. This was one of my first attempts at creating a cross platform mobile application.
 
 ## Getting Started
 
