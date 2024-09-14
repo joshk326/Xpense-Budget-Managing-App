@@ -1,22 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
-
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:xpense/constants.dart';
-import 'package:xpense/functions.dart';
 import '../../models/budget.dart';
 import '../database_helper.dart';
 
 class BudgetPage extends StatefulWidget {
+  const BudgetPage({super.key});
+
   @override
   _BudgetPage createState() => _BudgetPage();
 }
 
 class _BudgetPage extends State<BudgetPage> {
-  DatabaseHelper _dbHelper = DatabaseHelper();
+  final DatabaseHelper _dbHelper = DatabaseHelper();
   int? _budgetID = 0;
-  String? _budgetStartDate = '';
-  String? _budgetEndDate = '';
+  final String? _budgetStartDate = '';
+  final String? _budgetEndDate = '';
   String? _budgetAmount = '';
 
   @override
@@ -39,16 +38,16 @@ class _BudgetPage extends State<BudgetPage> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.all(25.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(25.0),
                         child: Icon(Icons.arrow_back),
                       ),
                     ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 10),
                 child: Text(
                   'Enter Budget Amount',
                   style: TextStyle(
@@ -64,9 +63,9 @@ class _BudgetPage extends State<BudgetPage> {
                   children: [
                     Expanded(
                         child: TextField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           hintText: '\$0.00', border: OutlineInputBorder()),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20.0,
                       ),
                       onSubmitted: (value) async {
@@ -85,7 +84,9 @@ class _BudgetPage extends State<BudgetPage> {
                 ),
               ),
               MaterialButton(onPressed: () {
-                print('Button Pressed');
+                if (kDebugMode) {
+                  print('Button Pressed');
+                }
               }),
             ],
           ),

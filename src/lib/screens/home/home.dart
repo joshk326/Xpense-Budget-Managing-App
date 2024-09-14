@@ -1,12 +1,12 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:xpense/screens/database_helper.dart';
 import 'package:xpense/screens/home/taskpage.dart';
 import '../../constants.dart';
-import '../widgets.dart';
+import '../../widgets.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 25.0,
             vertical: 5.0,
           ),
@@ -30,10 +30,10 @@ class _HomePageState extends State<HomePage> {
             children: [
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     bottom: 5.0,
                   ),
-                  child: Image(
+                  child: const Image(
                     image: AssetImage('assets/images/logo_small.png'),
                     height: 60,
                     width: 40,
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 7.0, left: 130),
                       child: IconButton(
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.search,
                           color: darkGray,
                         ),
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                       return ScrollConfiguration(
                         behavior: NoGlowBehavior(),
                         child: ListView.builder(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(15.0),
                         color: darkGray,
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.add,
                         color: seaGreen,
                       ),

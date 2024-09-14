@@ -1,24 +1,22 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, curly_braces_in_flow_control_structures
-
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:xpense/constants.dart';
 import 'package:xpense/models/transaction.dart';
 import 'package:xpense/screens/database_helper.dart';
-import 'package:xpense/screens/widgets.dart';
+import 'package:xpense/widgets.dart';
 
 import '../../functions.dart';
 
 class TaskPage extends StatefulWidget {
   final NewTransaction? transaction;
-  TaskPage({required this.transaction});
+  const TaskPage({super.key, required this.transaction});
 
   @override
   _TaskPageState createState() => _TaskPageState();
 }
 
 class _TaskPageState extends State<TaskPage> {
-  DatabaseHelper _dbHelper = DatabaseHelper();
+  final DatabaseHelper _dbHelper = DatabaseHelper();
   int? _transactionID = 0;
   String? _transactionTitle = '';
   String? _transactionAmount = '';
@@ -101,8 +99,8 @@ class _TaskPageState extends State<TaskPage> {
                           Navigator.pop(context);
                           setState(() {});
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 25.0),
                           child: Icon(Icons.arrow_back),
                         ),
                       ),
@@ -123,8 +121,8 @@ class _TaskPageState extends State<TaskPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 5),
+                          const Padding(
+                            padding: EdgeInsets.only(bottom: 5),
                             child: Text(
                               'Title',
                               style: TextStyle(
@@ -156,7 +154,7 @@ class _TaskPageState extends State<TaskPage> {
                             },
                             controller: TextEditingController()
                               ..text = _transactionTitle!,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: 'Ex. Electric Bill',
                               border: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
@@ -166,16 +164,15 @@ class _TaskPageState extends State<TaskPage> {
                                     BorderSide(width: 1, color: seaGreen),
                               ),
                             ),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
                           Visibility(
                             visible: _contentVisible,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(bottom: 5, top: 20),
+                            child: const Padding(
+                              padding: EdgeInsets.only(bottom: 5, top: 20),
                               child: Text(
                                 'Transaction Amount',
                                 style: TextStyle(
@@ -190,24 +187,22 @@ class _TaskPageState extends State<TaskPage> {
                             child: TextField(
                               focusNode: _amountFocus,
                               onSubmitted: (value) async {
-                                if (value != null) {
-                                  if (_transactionID != 0) {
-                                    if (isNumeric(value)) {
-                                      await _dbHelper.updateTransactionAmount(
-                                          _transactionID!, value);
-                                      _transactionAmount = value;
-                                      setState(() {});
-                                      _dateFocus.requestFocus();
-                                    } else {
-                                      showMyDialog(
-                                          'Incorrect Input',
-                                          'Transaction amount can only contain numbers.',
-                                          context);
-                                    }
+                                if (_transactionID != 0) {
+                                  if (isNumeric(value)) {
+                                    await _dbHelper.updateTransactionAmount(
+                                        _transactionID!, value);
+                                    _transactionAmount = value;
+                                    setState(() {});
+                                    _dateFocus.requestFocus();
+                                  } else {
+                                    showMyDialog(
+                                        'Incorrect Input',
+                                        'Transaction amount can only contain numbers.',
+                                        context);
                                   }
                                 }
                               },
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 hintText: '0.00',
                                 border: OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
@@ -219,7 +214,7 @@ class _TaskPageState extends State<TaskPage> {
                               ),
                               controller: TextEditingController()
                                 ..text = _transactionAmount ?? '0.00',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -227,9 +222,8 @@ class _TaskPageState extends State<TaskPage> {
                           ),
                           Visibility(
                             visible: _contentVisible,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(bottom: 5, top: 15),
+                            child: const Padding(
+                              padding: EdgeInsets.only(bottom: 5, top: 15),
                               child: Text(
                                 'Category',
                                 style: TextStyle(
@@ -243,7 +237,7 @@ class _TaskPageState extends State<TaskPage> {
                             visible: _contentVisible,
                             child: Container(
                               width: 400,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 15),
                               decoration: BoxDecoration(
                                   color: seaGreen,
@@ -256,13 +250,13 @@ class _TaskPageState extends State<TaskPage> {
                                 },
                                 value: _selectedColor,
                                 underline: Container(),
-                                hint: Center(
+                                hint: const Center(
                                     child: Text(
                                   'Select Category',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 18),
                                 )),
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.arrow_downward,
                                   color: Colors.white,
                                 ),
@@ -280,7 +274,8 @@ class _TaskPageState extends State<TaskPage> {
                                             alignment: Alignment.centerLeft,
                                             child: Text(
                                               e,
-                                              style: TextStyle(fontSize: 18),
+                                              style:
+                                                  const TextStyle(fontSize: 18),
                                             ),
                                           ),
                                           value: e,
@@ -304,7 +299,7 @@ class _TaskPageState extends State<TaskPage> {
                                                     ),
                                                     child: Text(
                                                       e,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                         color: Colors.white,
                                                       ),
@@ -319,9 +314,8 @@ class _TaskPageState extends State<TaskPage> {
                           ),
                           Visibility(
                             visible: _contentVisible,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(bottom: 5, top: 20),
+                            child: const Padding(
+                              padding: EdgeInsets.only(bottom: 5, top: 20),
                               child: Text(
                                 'Date',
                                 style: TextStyle(
@@ -350,19 +344,17 @@ class _TaskPageState extends State<TaskPage> {
                               dateFormat: "dd-MMM-yyyy",
                               locale: DatePicker.localeFromString('en'),
                               onChange: (DateTime newDate, _) async {
-                                if (newDate != null) {
-                                  if (_transactionID != 0) {
-                                    _selectedDate = newDate;
-                                    String dateSelected = _selectedDate
-                                        .toString()
-                                        .replaceAll(' 00:00:00.000', '');
-                                    await _dbHelper.updateTransactionDate(
-                                        _transactionID!, dateSelected);
-                                    _transactionDate = dateSelected;
-                                  }
+                                if (_transactionID != 0) {
+                                  _selectedDate = newDate;
+                                  String dateSelected = _selectedDate
+                                      .toString()
+                                      .replaceAll(' 00:00:00.000', '');
+                                  await _dbHelper.updateTransactionDate(
+                                      _transactionID!, dateSelected);
+                                  _transactionDate = dateSelected;
                                 }
                               },
-                              pickerTheme: DateTimePickerTheme(
+                              pickerTheme: const DateTimePickerTheme(
                                 itemTextStyle:
                                     TextStyle(color: darkGray, fontSize: 19),
                                 dividerColor: seaGreen,
@@ -395,7 +387,7 @@ class _TaskPageState extends State<TaskPage> {
                       width: 60.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.0),
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                             colors: [thunderBirdHue, thunderBird]),
                         boxShadow: [
                           BoxShadow(
@@ -406,7 +398,7 @@ class _TaskPageState extends State<TaskPage> {
                           ),
                         ],
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.delete_outline,
                         color: Colors.white,
                       ),
